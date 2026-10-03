@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens: GMVP Credifinanzas — "Fintech moderno" ---------- */
+@theme {
+  --color-navy: #0a1a3f;
+  --color-navy-2: #10245a;
+  --color-blue: #0b5fc2;
+  --color-blue-soft: #4c8ef0;
+  --color-sky: #e8f0fc;
+  --color-gold: #e4b53a;
+  --color-mint: #14b8a6;
+  --color-mint-soft: #e9fbf8;
+  --color-coral: #e0574b;
+  --color-mist: #f4f7fc;
+  --color-ink: #0a1a3f;
+  --color-slate: #46536f;
+  --color-haze: #6a7794;
+  --color-line: #dce4f2;
+
+  --font-display: "Sora Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --bg: var(--color-mist);
+  --fg: var(--color-ink);
+  --muted: var(--color-slate);
+  --line: var(--color-line);
+  --accent: var(--color-blue);
+  --on-accent: #ffffff;
+  --glow: rgba(11, 95, 194, 0.12);
+  --cursor: var(--color-blue);
+  --cursor-text: #ffffff;
+  color-scheme: light;
+}
+
+/* Dark sections reuse components with inverted tokens */
+.theme-dark {
+  --fg: #ffffff;
+  --muted: #a9b6d3;
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: var(--color-gold);
+  --on-accent: var(--color-navy);
+  --glow: rgba(228, 181, 58, 0.14);
+  color: var(--fg);
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+html.has-cursor,
+html.has-cursor a,
+html.has-cursor button {
+  cursor: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Film grain overlay */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
+}
+
+.marquee-track {
+  animation: marquee linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Range inputs */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 20%, transparent);
+  cursor: grab;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
