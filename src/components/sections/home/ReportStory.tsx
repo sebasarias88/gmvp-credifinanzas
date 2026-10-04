@@ -55,7 +55,7 @@ export function ReportStory() {
   return (
     <section ref={section} className="relative flex min-h-[100svh] items-center overflow-hidden py-24">
       <div aria-hidden className="absolute left-0 top-1/4 h-[480px] w-[480px] rounded-full bg-electric opacity-[0.12] blur-[140px]" />
-      <div className="relative mx-auto grid w-full max-w-[1360px] items-center gap-12 px-6 md:px-10 lg:grid-cols-[1fr_1.1fr]">
+      <div className="relative mx-auto grid w-full max-w-[1360px] items-center gap-12 px-6 md:px-10 lg:grid-cols-[1fr_1.1fr] [&>*]:min-w-0">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-lime">
             Desde {story.year}

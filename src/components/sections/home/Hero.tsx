@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
 import { ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
 import { hero, site } from "@/content/site";
@@ -42,11 +42,7 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-[1360px] items-center gap-16 px-6 pb-20 md:px-10 lg:grid-cols-[1.05fr_1fr] lg:pb-28">
         <motion.div style={{ y: textY, opacity: fade }}>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="glass inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 text-sm text-fog"
+          <motion.span className="intro-fade glass inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 text-sm text-fog" style={{ "--d": "0ms" } as CSSProperties}
           >
             <span className="inline-flex items-center gap-1 rounded-full bg-lime px-2.5 py-1 font-mono text-[11px] font-bold text-void">
               <Sparkles className="h-3 w-3" /> NUEVO
@@ -60,19 +56,11 @@ export function Hero() {
             lines={[...hero.title, { text: hero.accent, className: "text-electric-gradient" }]}
             className="mt-8 text-[13vw] font-semibold leading-[0.95] tracking-[-0.055em] text-snow sm:text-7xl lg:text-[4rem] xl:text-[4.5rem]"
           />
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.9 }}
-            className="mt-8 max-w-xl text-lg leading-relaxed text-fog"
+          <motion.p className="intro-fade mt-8 max-w-xl text-lg leading-relaxed text-fog" style={{ "--d": "500ms" } as CSSProperties}
           >
             {hero.intro}
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65, duration: 0.9 }}
-            className="mt-10 flex flex-wrap gap-3"
+          <motion.div className="intro-fade mt-10 flex flex-wrap gap-3" style={{ "--d": "650ms" } as CSSProperties}
           >
             <Magnetic>
               <Link href="#diagnostico" className="glow-lime group inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 font-semibold text-void transition-transform hover:scale-[1.03]">

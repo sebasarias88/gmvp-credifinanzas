@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { SplitHeading } from "@/components/core/SplitHeading";
 
@@ -21,7 +21,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
       <div aria-hidden className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-cyan opacity-10 blur-[110px]" />
       <div className="relative mx-auto grid max-w-[1360px] items-end gap-12 px-6 md:px-10 lg:grid-cols-[1.3fr_1fr]">
         <motion.div style={{ y: textY }}>
-          <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="glass inline-flex rounded-full px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-lime">
+          <motion.span className="intro-fade glass inline-flex rounded-full px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-lime" style={{ "--d": "0ms" } as CSSProperties}>
             {label}
           </motion.span>
           <SplitHeading
@@ -31,7 +31,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
             className="mt-8 max-w-4xl text-[12vw] font-semibold leading-[0.95] tracking-[-0.055em] text-snow md:text-7xl lg:text-[5.4rem]"
           />
           {intro && (
-            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.9 }} className="mt-8 max-w-2xl text-lg leading-relaxed text-fog md:text-xl">
+            <motion.p className="intro-fade mt-8 max-w-2xl text-lg leading-relaxed text-fog md:text-xl" style={{ "--d": "500ms" } as CSSProperties}>
               {intro}
             </motion.p>
           )}
@@ -44,7 +44,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
             transition={{ duration: 1.3, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="ring-gradient relative hidden aspect-[4/5] overflow-hidden rounded-[32px] lg:block"
           >
-            <Image src={image} alt="" fill priority placeholder="blur" sizes="40vw" className="img-cool object-cover" />
+            <Image src={image} alt="" fill placeholder="blur" sizes="40vw" className="img-cool object-cover" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/80 via-transparent to-transparent" />
           </motion.div>
         )}
