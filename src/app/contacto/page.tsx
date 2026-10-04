@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/content/site";
+import { handshakeContract } from "@/assets/images";
 import { PageHero } from "@/components/sections/PageHero";
 import { ContactForm } from "@/components/core/ContactForm";
 import { Reveal } from "@/components/core/Reveal";
@@ -20,26 +21,26 @@ export default function ContactPage() {
   ];
   return (
     <>
-      <PageHero label="Servicio al cliente" lines={["Hablemos de", { text: "tu caso.", className: "text-gold" }]} intro="Cuéntanos tu situación y un asesor te responderá con las mejores alternativas para ti." />
-      <section className="mx-auto grid max-w-[1320px] gap-8 px-6 py-24 md:px-10 lg:grid-cols-[1fr_1.4fr] [&>*]:min-w-0">
+      <PageHero image={handshakeContract} label="Servicio al cliente" lines={["Hablemos de", { text: "tu caso.", className: "text-electric-gradient" }]} intro="Cuéntanos tu situación y un asesor te responderá con las mejores alternativas para ti." />
+      <section className="mx-auto grid max-w-[1360px] gap-8 px-6 pb-28 md:px-10 lg:grid-cols-[1fr_1.4fr] [&>*]:min-w-0">
         <Reveal className="space-y-3">
           {items.map(({ icon: Icon, label, value, href }) => (
             <a
               key={label}
               href={href}
               {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="group flex items-center gap-5 rounded-3xl border border-line bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-blue/40"
+              className="group flex items-center gap-5 rounded-3xl border border-white/[0.07] bg-panel p-6 transition-all hover:-translate-y-0.5 hover:border-lime/40"
             >
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-sky text-blue transition-colors group-hover:bg-blue group-hover:text-white"><Icon className="h-5 w-5" /></span>
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white/[0.05] text-lime transition-colors group-hover:bg-lime group-hover:text-void"><Icon className="h-5 w-5" /></span>
               <span className="min-w-0">
-                <span className="block text-xs font-bold uppercase tracking-[0.16em] text-haze">{label}</span>
-                <span className="mt-1 block break-all font-semibold text-navy">{value}</span>
+                <span className="block font-mono text-[11px] uppercase tracking-[0.16em] text-steel">{label}</span>
+                <span className="mt-1 block break-all font-medium text-snow">{value}</span>
               </span>
             </a>
           ))}
         </Reveal>
-        <Reveal delay={0.1} className="rounded-[32px] border border-line bg-white p-7 md:p-12">
-          <h2 className="mb-8 font-display text-3xl font-extrabold tracking-tight text-navy md:text-4xl">Envíanos un mensaje</h2>
+        <Reveal delay={0.1} className="glass ring-gradient rounded-[32px] p-7 md:p-12">
+          <h2 className="mb-8 text-3xl font-semibold tracking-[-0.04em] text-snow md:text-4xl">Envíanos un mensaje</h2>
           <ContactForm whatsapp={site.whatsapp} />
         </Reveal>
       </section>

@@ -25,7 +25,7 @@ export function Header() {
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
-    setScrolled(y > 60);
+    setScrolled(y > 40);
     setHidden(y > prev && y > 400 && !open);
   });
 
@@ -34,8 +34,6 @@ export function Header() {
     if (open) window.__lenis?.stop();
     else window.__lenis?.start();
   }, [open]);
-
-  const light = !scrolled && !open; // over the dark hero
 
   return (
     <>
@@ -46,12 +44,12 @@ export function Header() {
       >
         <div
           className={cn(
-            "mx-auto flex max-w-[1320px] items-center justify-between rounded-2xl px-4 py-3 transition-all duration-500 md:px-5",
-            light ? "bg-transparent" : "border border-line bg-white/85 shadow-[0_10px_40px_-20px_rgba(10,26,63,0.35)] backdrop-blur-xl",
+            "mx-auto flex max-w-[1320px] items-center justify-between rounded-full py-2.5 pl-4 pr-2.5 transition-all duration-500 md:pl-5",
+            scrolled || open ? "glass shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)]" : "border border-transparent",
           )}
         >
           <Link href="/" aria-label="GMVP Credifinanzas — inicio">
-            <Logo tone={light ? "light" : "dark"} />
+            <Logo />
           </Link>
 
           <nav aria-label="Principal" className="hidden items-center gap-1 lg:flex">
@@ -61,27 +59,18 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={cn(
-                    "relative rounded-xl px-4 py-2 text-sm font-semibold transition-colors",
-                    light ? "text-white/75 hover:text-white" : "text-slate hover:text-navy",
-                    active && (light ? "text-white" : "text-navy"),
-                  )}
+                  className={cn("relative rounded-full px-4 py-2 text-sm font-medium transition-colors", active ? "text-snow" : "text-fog hover:text-snow")}
                 >
-                  {active && (
-                    <motion.span layoutId="nav-pill" className={cn("absolute inset-0 -z-10 rounded-xl", light ? "bg-white/10" : "bg-sky")} />
-                  )}
+                  {active && <motion.span layoutId="nav-pill" className="absolute inset-0 -z-10 rounded-full bg-white/[0.08]" />}
                   {item.label}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Magnetic className="hidden md:inline-flex">
-              <Link
-                href="/contacto"
-                className="group inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-2.5 text-sm font-bold text-navy transition-transform hover:scale-[1.03]"
-              >
+              <Link href="/contacto" className="group inline-flex items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-void transition-transform hover:scale-[1.03]">
                 Revisar mi caso
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </Link>
@@ -92,13 +81,10 @@ export function Header() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              className={cn(
-                "relative grid h-11 w-11 place-items-center rounded-xl border lg:hidden",
-                light ? "border-white/25" : "border-line",
-              )}
+              className="relative grid h-11 w-11 place-items-center rounded-full border border-white/15 lg:hidden"
             >
-              <span className={cn("absolute h-0.5 w-5 rounded transition-transform duration-500", light ? "bg-white" : "bg-navy", open ? "rotate-45" : "-translate-y-1")} />
-              <span className={cn("absolute h-0.5 w-5 rounded transition-transform duration-500", light ? "bg-white" : "bg-navy", open ? "-rotate-45" : "translate-y-1")} />
+              <span className={cn("absolute h-0.5 w-5 rounded bg-snow transition-transform duration-500", open ? "rotate-45" : "-translate-y-1")} />
+              <span className={cn("absolute h-0.5 w-5 rounded bg-snow transition-transform duration-500", open ? "-rotate-45" : "translate-y-1")} />
             </button>
           </div>
         </div>
@@ -108,27 +94,23 @@ export function Header() {
         {open && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[65] flex flex-col justify-between bg-white px-6 pb-10 pt-32"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[65] flex flex-col justify-between bg-void/95 px-6 pb-10 pt-32 backdrop-blur-xl"
           >
-            <nav aria-label="Móvil" className="flex flex-col gap-1">
+            <nav aria-label="Móvil" className="flex flex-col">
               {[{ href: "/", label: "Inicio" }, ...site.nav].map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: -24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.08 + i * 0.05, duration: 0.5 }}
-                >
-                  <Link href={item.href} className="block border-b border-line py-4 font-display text-3xl font-bold text-navy">
+                <motion.div key={item.href} initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.06 + i * 0.05, duration: 0.5 }}>
+                  <Link href={item.href} className="flex items-center justify-between border-b border-white/10 py-5 text-3xl font-semibold tracking-tight text-snow">
                     {item.label}
+                    <ArrowUpRight className="h-6 w-6 text-lime" />
                   </Link>
                 </motion.div>
               ))}
             </nav>
-            <a href={`https://wa.me/${site.whatsapp}`} className="rounded-2xl bg-navy px-6 py-5 text-center font-bold text-white">
+            <a href={`https://wa.me/${site.whatsapp}`} className="rounded-full bg-lime px-6 py-5 text-center font-semibold text-void">
               Escríbenos por WhatsApp
             </a>
           </motion.div>

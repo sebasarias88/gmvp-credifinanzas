@@ -265,15 +265,20 @@
     "@eslint/core" "^0.17.0"
     levn "^0.4.1"
 
-"@fontsource-variable/plus-jakarta-sans@^5.3.0":
+"@fontsource-variable/geist-mono@^5.3.0":
   version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/plus-jakarta-sans/-/plus-jakarta-sans-5.3.0.tgz#2a34ff48a1d15cee9f48d088c3bf406cbaa2e3d6"
-  integrity sha512-/l/4r0yyWK9JzAlmA0LiYgGgmJe/Gswt4jTJEzr5QhJfwMbvJZDmYWyW0M4X7yCK69BajMVlV/Lx8g7WDc1+sw==
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/geist-mono/-/geist-mono-5.3.0.tgz#ef4ce98a5d7485a4944ead6f799346dc33eddc63"
+  integrity sha512-vBbuwDEo9AkrqADMXOrlAR3DFcJi4/JxeuU43FoiQERnNwsfXNnvxvReZG02cQKmyk4DZkZdBZX3oTDvy2zBAw==
 
-"@fontsource-variable/sora@^5.3.0":
+"@fontsource-variable/geist@^5.3.0":
   version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/sora/-/sora-5.3.0.tgz#ecbb32f64ae2cfa362a18cb269657cf741441c65"
-  integrity sha512-h8kHta4Z8SkfUGeI82TUy1n3rbrKpBRGwuk4t4qCwto5oEHxlbOFD2yGP+Df5fbmTXwKGn+o667vYp0E4K8Whw==
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/geist/-/geist-5.3.0.tgz#59084c5e2ffa77c6e3c63bc06f3af62ba4dbbdc5"
+  integrity sha512-j0m+vLQuG5XAYoHtGCVu0spvlGreR3EzpECUVzkFmI1mTVnAO38l/NEPDCFgZ177JxzYJCLSmTQibIiYPilGrA==
+
+"@fontsource-variable/unbounded@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/unbounded/-/unbounded-5.3.0.tgz#23f6c61b8d28d969631b38914e0d9ee1bde1daa0"
+  integrity sha512-ea565Ncn4r7gPdBEHcmaF31V11hDfkL7b/JCklLobQbMfbu2ZZQrVWNgdeEFWFLqNh36yhieZWOgxdAnMTzrLg==
 
 "@gsap/react@^2.1.2":
   version "2.1.2"

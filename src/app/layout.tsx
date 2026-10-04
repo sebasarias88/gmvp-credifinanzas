@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/sora";
-import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
+import "@fontsource-variable/unbounded";
 import "./globals.css";
 import { site } from "@/content/site";
 import { SmoothScroll } from "@/components/core/SmoothScroll";
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export const viewport: Viewport = { themeColor: "#0a1a3f" };
+export const viewport: Viewport = { themeColor: "#04060b", colorScheme: "dark" };
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -59,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es-CO">
       <body className="grain min-h-screen">
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-xl focus:bg-gold focus:px-4 focus:py-2 focus:text-navy">
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-lime focus:px-4 focus:py-2 focus:text-void">
           Saltar al contenido
         </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

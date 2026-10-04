@@ -2,50 +2,69 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
+import { ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
 import { hero, site } from "@/content/site";
 import { SplitHeading } from "@/components/core/SplitHeading";
 import { Magnetic } from "@/components/core/Magnetic";
 import { Marquee } from "@/components/core/Marquee";
-import { ScoreGauge } from "../ScoreGauge";
+import { ScoreDevice } from "../ScoreDevice";
 
-const chips = ["CIFIN · TransUnion", "DataCrédito · Experian", "Ley de Habeas Data"];
-const ticker = ["Asesoría financiera", "Crédito rotativo", "Compra de cartera", "Seguros de vida", "Seguro de deudores", "SOAT", "Mejora tu puntaje"];
+const ticker = ["Asesoría financiera", "Crédito rotativo", "Compra de cartera", "Seguros de vida", "Seguro de deudores", "SOAT", "Mejora tu puntaje", "Habeas Data"];
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const cardY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
-  const blobY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const deviceY = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const ax = useSpring(useTransform(mx, [-1, 1], [-60, 60]), { stiffness: 30, damping: 20 });
+  const ay = useSpring(useTransform(my, [-1, 1], [-40, 40]), { stiffness: 30, damping: 20 });
+  const bx = useSpring(useTransform(mx, [-1, 1], [50, -50]), { stiffness: 30, damping: 20 });
 
   return (
-    <section ref={ref} className="theme-dark relative overflow-hidden bg-navy pt-32 md:pt-40">
-      <div aria-hidden className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
-      <motion.div style={{ y: blobY }} aria-hidden className="absolute -right-40 -top-40 h-[640px] w-[640px] rounded-full bg-blue opacity-50 blur-[120px]" />
-      <motion.div style={{ y: blobY }} aria-hidden className="absolute -bottom-40 left-1/4 h-[420px] w-[420px] rounded-full bg-mint opacity-25 blur-[120px]" />
+    <section
+      ref={ref}
+      onPointerMove={(e) => {
+        mx.set((e.clientX / window.innerWidth) * 2 - 1);
+        my.set((e.clientY / window.innerHeight) * 2 - 1);
+      }}
+      className="relative overflow-hidden pt-32 md:pt-36"
+    >
+      {/* Aurora */}
+      <motion.div style={{ x: ax, y: ay }} aria-hidden className="absolute -right-32 -top-48 h-[720px] w-[720px] rounded-full bg-electric opacity-40 blur-[140px]" />
+      <motion.div style={{ x: bx }} aria-hidden className="absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-cyan opacity-[0.16] blur-[140px]" />
+      <div aria-hidden className="absolute bottom-0 left-1/3 h-[300px] w-[600px] rounded-full bg-lime opacity-[0.07] blur-[120px]" />
+      <div aria-hidden className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,black,transparent)]" />
 
-      <div className="relative mx-auto grid max-w-[1320px] items-center gap-14 px-6 pb-24 md:px-10 lg:grid-cols-[1.25fr_1fr] lg:pb-32">
-        <div>
+      <div className="relative mx-auto grid max-w-[1360px] items-center gap-16 px-6 pb-20 md:px-10 lg:grid-cols-[1.05fr_1fr] lg:pb-28">
+        <motion.div style={{ y: textY, opacity: fade }}>
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white/80"
+            className="glass inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 text-sm text-fog"
           >
-            <ShieldCheck className="h-4 w-4 text-gold" /> {hero.badge}
+            <span className="inline-flex items-center gap-1 rounded-full bg-lime px-2.5 py-1 font-mono text-[11px] font-bold text-void">
+              <Sparkles className="h-3 w-3" /> NUEVO
+            </span>
+            Diagnóstico gratis en 30 segundos
           </motion.span>
+
           <SplitHeading
             as="h1"
             immediate
-            lines={[...hero.title, { text: hero.accent, className: "text-gold" }]}
-            className="mt-8 font-display text-[12.5vw] font-extrabold leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl lg:text-[4.2rem] xl:text-[5rem]"
+            lines={[...hero.title, { text: hero.accent, className: "text-electric-gradient" }]}
+            className="mt-8 text-[13vw] font-semibold leading-[0.95] tracking-[-0.055em] text-snow sm:text-7xl lg:text-[4rem] xl:text-[4.5rem]"
           />
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.9 }}
-            className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--muted)]"
+            className="mt-8 max-w-xl text-lg leading-relaxed text-fog"
           >
             {hero.intro}
           </motion.p>
@@ -56,65 +75,48 @@ export function Hero() {
             className="mt-10 flex flex-wrap gap-3"
           >
             <Magnetic>
-              <Link href="#diagnostico" className="group inline-flex items-center gap-2 rounded-2xl bg-gold px-7 py-4 font-bold text-navy transition-transform hover:scale-[1.03]">
-                Haz tu diagnóstico gratis <ArrowUpRight className="h-5 w-5 transition-transform group-hover:rotate-45" />
+              <Link href="#diagnostico" className="glow-lime group inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 font-semibold text-void transition-transform hover:scale-[1.03]">
+                Haz tu diagnóstico <ArrowUpRight className="h-5 w-5 transition-transform group-hover:rotate-45" />
               </Link>
             </Magnetic>
             <a
               href={`https://wa.me/${site.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass inline-flex items-center gap-2 rounded-2xl px-7 py-4 font-semibold text-white transition-colors hover:bg-white/15"
+              className="glass inline-flex items-center gap-2 rounded-full px-7 py-4 font-semibold text-snow transition-colors hover:bg-white/10"
             >
-              Chatea con un asesor
+              Hablar con un asesor
             </a>
           </motion.div>
-          <ul className="mt-10 flex flex-wrap gap-2">
-            {chips.map((c, i) => (
-              <motion.li
-                key={c}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 + i * 0.1 }}
-                className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/70"
-              >
-                {c}
-              </motion.li>
-            ))}
-          </ul>
-        </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 1 }}
+            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-8 text-sm text-fog"
+          >
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-lime" /> CIFIN · TransUnion</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-lime" /> DataCrédito · Experian</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-lime" /> Ley de Habeas Data</span>
+          </motion.div>
+        </motion.div>
 
-        <motion.div style={{ y: cardY }} className="relative mx-auto w-full max-w-[400px]">
-          <motion.div initial={{ opacity: 0, y: 40, rotate: 3 }} animate={{ opacity: 1, y: 0, rotate: 0 }} transition={{ delay: 0.3, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>
-            <ScoreGauge />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1, duration: 0.9 }}
-            className="glass animate-float absolute -left-12 -top-10 z-10 hidden rounded-2xl px-4 py-3 text-sm text-white sm:block"
-          >
-            <span className="block text-xs text-white/60">Desde</span>
-            <span className="font-display text-xl font-bold">2015</span>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.3, duration: 0.9 }}
-            className="glass animate-float absolute -bottom-8 -right-8 z-10 hidden rounded-2xl px-4 py-3 text-sm text-white [animation-delay:1.5s] sm:block"
-          >
-            <span className="block text-xs text-white/60">Asesores + abogados</span>
-            <span className="font-display text-xl font-bold">Habeas Data</span>
-          </motion.div>
+        <motion.div
+          style={{ y: deviceY }}
+          initial={{ opacity: 0, y: 60, rotateX: 18 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+          transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto w-full max-w-[540px] [perspective:1200px]"
+        >
+          <ScoreDevice />
         </motion.div>
       </div>
 
-      <div className="relative border-t border-white/10 py-5">
-        <Marquee speed={35}>
+      <div className="relative border-y border-white/[0.07] bg-white/[0.02] py-5">
+        <Marquee speed={40}>
           {ticker.map((t) => (
-            <span key={t} className="mx-8 inline-flex items-center gap-8 font-display text-lg font-semibold text-white/70">
+            <span key={t} className="mx-8 inline-flex items-center gap-8 text-lg font-medium text-fog">
               {t}
-              <span className="h-2 w-2 rounded-full bg-gold" aria-hidden />
+              <span className="h-1.5 w-1.5 rotate-45 bg-lime" aria-hidden />
             </span>
           ))}
         </Marquee>
