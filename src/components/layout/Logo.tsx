@@ -1,22 +1,24 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 /**
- * Provisional mark for GMVP Credifinanzas: three rising bars, the last one lit.
- * Swap for the official logo in /public/brand when available.
+ * Official GMVP mark (vectorized from the company's artwork in /public/brand)
+ * paired with the Credifinanzas name.
  */
-export function Logo({ className }: { className?: string; tone?: "light" | "dark" }) {
-  return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <svg viewBox="0 0 40 40" className="h-9 w-9 shrink-0" aria-hidden>
-        <rect width="40" height="40" rx="12" fill="#0c111d" stroke="rgba(255,255,255,0.12)" />
-        <rect x="9" y="22" width="5" height="9" rx="2.5" fill="#3B6CFF" />
-        <rect x="17.5" y="16" width="5" height="15" rx="2.5" fill="#22D3EE" />
-        <rect x="26" y="9" width="5" height="22" rx="2.5" fill="#C8FF4D" />
-      </svg>
-      <span className="flex flex-col leading-none">
-        <span className="text-[17px] font-semibold tracking-[-0.03em] text-snow">Credifinanzas</span>
-        <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.3em] text-steel">by GMVP</span>
+export function Logo({ className, variant = "compact" }: { className?: string; variant?: "compact" | "full" }) {
+  if (variant === "full") {
+    return (
+      <span className={cn("flex flex-col gap-3", className)}>
+        <Image src="/brand/gmvp-logo-light.svg" alt="GMVP Group Enterprise S.A.S" width={3060} height={1950} unoptimized className="h-auto w-48" />
+        <span className="text-xl font-semibold tracking-[-0.03em] text-snow">Credifinanzas</span>
       </span>
+    );
+  }
+  return (
+    <span className={cn("inline-flex items-center gap-3", className)}>
+      <Image src="/brand/gmvp-mark.svg" alt="GMVP" width={3060} height={1490} unoptimized preload className="h-8 w-auto md:h-9" />
+      <span aria-hidden className="h-7 w-px bg-white/15" />
+      <span className="text-[17px] font-semibold tracking-[-0.03em] text-snow">Credifinanzas</span>
     </span>
   );
 }
