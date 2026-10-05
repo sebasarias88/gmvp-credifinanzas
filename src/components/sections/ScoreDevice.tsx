@@ -29,15 +29,18 @@ function mix(a: string, b: string, t: number) {
 }
 const segColor = (t: number) => (t < 0.5 ? mix("FF5A5F", "FFB547", t / 0.5) : mix("FFB547", "C8FF4D", (t - 0.5) / 0.5));
 
+/** Rounds SVG coordinates so server and client render identical attributes (avoids hydration mismatches). */
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
 const segments = Array.from({ length: SEGMENTS }, (_, i) => {
   const a = toRad(START + (i / (SEGMENTS - 1)) * SWEEP);
   const r1 = 116;
   const r2 = i % 7 === 0 ? 142 : 136;
   return {
-    x1: CX + Math.cos(a) * r1,
-    y1: CY + Math.sin(a) * r1,
-    x2: CX + Math.cos(a) * r2,
-    y2: CY + Math.sin(a) * r2,
+    x1: round2(CX + Math.cos(a) * r1),
+    y1: round2(CY + Math.sin(a) * r1),
+    x2: round2(CX + Math.cos(a) * r2),
+    y2: round2(CY + Math.sin(a) * r2),
     color: segColor(i / (SEGMENTS - 1)),
     major: i % 7 === 0,
   };
@@ -49,15 +52,15 @@ const CH = 120;
 function buildPath(values: number[]) {
   const lo = 340;
   const hi = 800;
-  const pts = values.map((v, i) => [10 + (i / (values.length - 1)) * (CW - 20), CH - 8 - ((v - lo) / (hi - lo)) * (CH - 20)] as const);
+  const pts = values.map((v, i) => [round2(10 + (i / (values.length - 1)) * (CW - 20)), round2(CH - 8 - ((v - lo) / (hi - lo)) * (CH - 20))] as const);
   let d = `M ${pts[0][0]} ${pts[0][1]}`;
   for (let i = 0; i < pts.length - 1; i++) {
     const p0 = pts[i - 1] ?? pts[i];
     const p1 = pts[i];
     const p2 = pts[i + 1];
     const p3 = pts[i + 2] ?? p2;
-    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
-    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    const c1 = [round2(p1[0] + (p2[0] - p0[0]) / 6), round2(p1[1] + (p2[1] - p0[1]) / 6)];
+    const c2 = [round2(p2[0] - (p3[0] - p1[0]) / 6), round2(p2[1] - (p3[1] - p1[1]) / 6)];
     d += ` C ${c1[0]} ${c1[1]}, ${c2[0]} ${c2[1]}, ${p2[0]} ${p2[1]}`;
   }
   return { d, area: `${d} L ${pts[pts.length - 1][0]} ${CH} L ${pts[0][0]} ${CH} Z` };
