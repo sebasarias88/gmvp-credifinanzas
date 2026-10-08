@@ -27,6 +27,7 @@ export default function ContactPage() {
     { icon: Phone, label: "Teléfono y WhatsApp", value: site.phone, href: site.phoneHref },
     { icon: Mail, label: "Información", value: site.emails.info, href: `mailto:${site.emails.info}` },
     { icon: Mail, label: "Servicio al cliente", value: site.emails.service, href: `mailto:${site.emails.service}` },
+    { icon: Mail, label: "Notificaciones judiciales", value: site.emails.legal, href: `mailto:${site.emails.legal}` },
     { icon: MapPin, label: "Ubicación", value: `${site.address.city}, ${site.address.country}`, href: undefined },
   ];
   return (

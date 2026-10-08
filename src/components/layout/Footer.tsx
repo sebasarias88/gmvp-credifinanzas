@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { site, disclaimer, services } from "@/content/site";
+import { site, disclaimer, services, welcome } from "@/content/site";
 import { handshakeContract } from "@/assets/images";
 import { Logo } from "./Logo";
 
@@ -14,9 +14,12 @@ export function Footer() {
           <Image src={handshakeContract} alt="" fill sizes="100vw" className="img-cool object-cover" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-void via-void/85 to-void/30" />
           <div className="relative grid gap-10 p-8 md:grid-cols-[1.5fr_1fr] md:items-end md:p-14">
-            <h2 className="text-4xl font-semibold leading-[1] tracking-[-0.045em] text-snow md:text-6xl">
-              ¿Reportado y quieres volver a tener <span className="text-electric-gradient">vida crediticia?</span>
-            </h2>
+            <div>
+              <h2 className="text-4xl font-semibold leading-[1] tracking-[-0.045em] text-snow md:text-6xl">
+                ¿Reportado y quieres volver a tener <span className="text-electric-gradient">vida crediticia?</span>
+              </h2>
+              <p className="mt-5 max-w-xl text-lg text-fog">{welcome.cta.text}</p>
+            </div>
             <div className="flex flex-col gap-3 md:items-end">
               <a
                 href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Hola, quiero saber cómo volver a tener vida crediticia.")}`}

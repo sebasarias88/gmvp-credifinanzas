@@ -29,7 +29,7 @@ export function ReportStory() {
         const { desktop, reduce } = ctx.conditions as { desktop: boolean; reduce: boolean };
         if (reduce) {
           gsap.set("[data-bad]", { yPercent: -100 });
-          gsap.set("[data-good]", { yPercent: 0 });
+          gsap.set("[data-good]", { y: 0, yPercent: 0 });
           return;
         }
         const tl = gsap.timeline({
@@ -41,7 +41,7 @@ export function ReportStory() {
         gsap.utils.toArray<HTMLElement>("[data-row]").forEach((row, i) => {
           const at = 0.6 + i;
           tl.to(row.querySelector("[data-bad]"), { yPercent: -100, duration: 1 }, at)
-            .fromTo(row.querySelector("[data-good]"), { yPercent: 100 }, { yPercent: 0, duration: 1 }, at)
+            .fromTo(row.querySelector("[data-good]"), { y: 0, yPercent: 100 }, { y: 0, yPercent: 0, duration: 1 }, at)
             .to(row.querySelector("[data-dot]"), { backgroundColor: "#C8FF4D", boxShadow: "0 0 12px #C8FF4D", duration: 1 }, at)
             .to(row, { borderColor: "rgba(200,255,77,0.25)", duration: 1 }, at);
         });

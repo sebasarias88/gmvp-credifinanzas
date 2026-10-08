@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Scale, Users } from "lucide-react";
+import { ArrowUpRight, Lightbulb, Scale, Users } from "lucide-react";
 import { Hero } from "@/components/sections/home/Hero";
 import { ReportStory } from "@/components/sections/home/ReportStory";
 import { ServicesBento } from "@/components/sections/ServicesBento";
@@ -10,7 +10,7 @@ import { Reveal } from "@/components/core/Reveal";
 import { Counter } from "@/components/core/Counter";
 import { ParallaxImage } from "@/components/core/ParallaxImage";
 import { officeMeeting, tabletReview } from "@/assets/images";
-import { about } from "@/content/site";
+import { about, welcome } from "@/content/site";
 
 export default function HomePage() {
   const since = new Date().getFullYear() - 2015;
@@ -18,6 +18,29 @@ export default function HomePage() {
     <>
       <Hero />
       <ReportStory />
+
+      {/* Welcome: national coverage + "did you know" */}
+      <section className="mx-auto grid max-w-[1360px] items-center gap-12 px-6 pt-28 md:px-10 md:pt-36 lg:grid-cols-[1.1fr_1fr]">
+        <div>
+          <Eyebrow>Bienvenido a GMVP Credifinanzas</Eyebrow>
+          <SectionTitle lines={[welcome.title[0], { text: welcome.title[1], className: "text-electric-gradient" }]} />
+          <Reveal>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-fog">{welcome.text}</p>
+          </Reveal>
+        </div>
+        <Reveal delay={0.1} className="glass ring-gradient relative overflow-hidden rounded-[32px] p-7 md:p-10">
+          <div aria-hidden className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-lime opacity-10 blur-3xl" />
+          <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-lime">
+            <Lightbulb className="h-4 w-4" /> ¿Sabías que…?
+          </span>
+          <p className="relative mt-5 text-xl leading-snug text-snow md:text-2xl">{welcome.didYouKnow}</p>
+          <ul className="relative mt-7 flex flex-wrap gap-2">
+            {welcome.sectors.map((s) => (
+              <li key={s} className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-sm text-fog">Sector {s.toLowerCase()}</li>
+            ))}
+          </ul>
+        </Reveal>
+      </section>
 
       <section className="mx-auto max-w-[1360px] px-6 py-28 md:px-10 md:py-36">
         <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
