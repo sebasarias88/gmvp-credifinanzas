@@ -17,7 +17,7 @@ export default function OpengraphImage() {
           <span>Llega hasta donde te propongas.</span>
           <span style={{ color: "#C8FF4D" }}>Te llevamos más allá.</span>
         </div>
-        <div style={{ display: "flex", fontSize: 26, color: "#a3adc4" }}>Asesoría en CIFIN-TransUnion y DataCrédito-Experian · Armenia, Quindío</div>
+        <div style={{ display: "flex", fontSize: 26, color: "#a3adc4" }}>Asesoría en CIFIN-TransUnion y DataCrédito-Experian · Bogotá</div>
       </div>
     ),
     size,

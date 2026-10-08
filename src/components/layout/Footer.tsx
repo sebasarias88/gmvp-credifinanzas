@@ -33,7 +33,7 @@ export function Footer() {
 
         <div className="mt-20 grid gap-12 md:grid-cols-4">
           <div className="space-y-4">
-            <Logo />
+            <Logo variant="full" />
             <p className="max-w-xs text-sm leading-relaxed text-fog">
               Una compañía de{" "}
               <a href={site.parent.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-snow underline-offset-4 hover:underline">
@@ -61,7 +61,7 @@ export function Footer() {
           <div>
             <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-lime">Contacto</p>
             <ul className="space-y-2 text-sm text-fog">
-              <li>{site.address.city}, {site.address.region}</li>
+              <li>{site.address.city}, {site.address.country}</li>
               <li><a href={site.phoneHref} className="hover:text-snow">{site.phone}</a></li>
               <li><a href={`mailto:${site.emails.info}`} className="break-all hover:text-snow">{site.emails.info}</a></li>
               <li><a href={`mailto:${site.emails.service}`} className="break-all hover:text-snow">{site.emails.service}</a></li>

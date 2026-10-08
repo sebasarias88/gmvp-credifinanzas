@@ -8,7 +8,7 @@ export const site = {
   legalName: "GMVP Credifinanzas S.A.S.",
   url: "https://gmvpcredifinanzas.com",
   description:
-    "Asesoría financiera para personas naturales y jurídicas: reportes en CIFIN-TransUnion y DataCrédito-Experian, mejora de puntaje, crédito rotativo, compra de cartera y seguros. Armenia, Quindío.",
+    "Asesoría financiera para personas naturales y jurídicas: reportes en CIFIN-TransUnion y DataCrédito-Experian, mejora de puntaje, crédito rotativo, compra de cartera y seguros. Bogotá, Colombia.",
   phone: "+57 318 640 1900",
   phoneHref: "tel:+573186401900",
   whatsapp: "573186401900",
@@ -17,7 +17,7 @@ export const site = {
     service: "servicioalcliente@gmvpcredifinanzas.com",
     legal: "notificacionesjudiciales@gmvpcredifinanzas.com",
   },
-  address: { city: "Armenia", region: "Quindío", country: "Colombia", mapsQuery: "Armenia Quindío Colombia" },
+  address: { city: "Bogotá", country: "Colombia" },
   parent: { name: "GMVP Group Enterprise", url: "https://gmvpgroupenterprise.com" },
   nav: [
     { href: "/nuestra-compania", label: "Compañía" },
@@ -208,4 +208,4 @@ export const quizResults = {
 } as const;
 
 export const disclaimer =
-  "GMVP Credifinanzas S.A.S. presta servicios de asesoría y financiación. No garantizamos la eliminación de reportes negativos: la permanencia de la información en las centrales de riesgo se rige por la ley. Todo crédito está sujeto a estudio y aprobación.";
+  "GMVP Credifinanzas S.A.S. presta servicios de asesoría y financiación. Garantizamos la eliminación de tus reportes negativos con el acompañamiento de nuestros asesores financieros y abogados, conforme a la ley. Todo crédito está sujeto a estudio y aprobación.";

@@ -15,11 +15,11 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden pb-20 pt-40 md:pb-28 md:pt-48">
+    <section ref={ref} className="relative overflow-hidden pb-20 pt-36 md:pb-24 md:pt-40 lg:flex lg:min-h-[min(100svh,880px)] lg:items-center lg:pb-14 lg:pt-28">
       <div aria-hidden className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_20%,transparent_70%)]" />
       <div aria-hidden className="absolute -right-32 -top-40 h-[560px] w-[560px] rounded-full bg-electric opacity-35 blur-[130px]" />
       <div aria-hidden className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-cyan opacity-10 blur-[110px]" />
-      <div className="relative mx-auto grid max-w-[1360px] items-end gap-12 px-6 md:px-10 lg:grid-cols-[1.3fr_1fr]">
+      <div className="relative mx-auto grid w-full max-w-[1360px] items-center gap-12 px-6 md:px-10 lg:grid-cols-[1.3fr_1fr]">
         <motion.div style={{ y: textY }}>
           <motion.span className="intro-fade glass inline-flex rounded-full px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-lime" style={{ "--d": "0ms" } as CSSProperties}>
             {label}
@@ -28,7 +28,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
             as="h1"
             immediate
             lines={lines}
-            className="mt-8 max-w-4xl text-[12vw] font-semibold leading-[0.95] tracking-[-0.055em] text-snow md:text-7xl lg:text-[5.4rem]"
+            className="mt-8 max-w-4xl text-[12vw] font-semibold leading-[0.95] tracking-[-0.055em] text-snow md:text-7xl lg:text-[clamp(3.6rem,9.5svh,5.4rem)]"
           />
           {intro && (
             <motion.p className="intro-fade mt-8 max-w-2xl text-lg leading-relaxed text-fog md:text-xl" style={{ "--d": "500ms" } as CSSProperties}>
@@ -42,7 +42,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
             initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1.3, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="ring-gradient relative hidden aspect-[4/5] overflow-hidden rounded-[32px] lg:block"
+            className="ring-gradient relative hidden aspect-[4/5] h-[min(66svh,600px)] justify-self-end overflow-hidden rounded-[32px] lg:block"
           >
             <Image src={image} alt="" fill placeholder="blur" sizes="40vw" className="img-cool object-cover" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-void/80 via-transparent to-transparent" />

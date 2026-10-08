@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "mejorar puntaje crediticio",
     "crédito rotativo",
     "compra de cartera",
-    "asesoría financiera Armenia",
+    "asesoría financiera Bogotá",
     "Habeas Data",
   ],
   openGraph: {
@@ -51,7 +51,7 @@ const jsonLd = {
   telephone: site.phone,
   email: site.emails.info,
   areaServed: "CO",
-  address: { "@type": "PostalAddress", addressLocality: site.address.city, addressRegion: site.address.region, addressCountry: "CO" },
+  address: { "@type": "PostalAddress", addressLocality: site.address.city, addressCountry: "CO" },
   parentOrganization: { "@type": "Organization", name: site.parent.name, url: site.parent.url },
   foundingDate: "2015",
 };

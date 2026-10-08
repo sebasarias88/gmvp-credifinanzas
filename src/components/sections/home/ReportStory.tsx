@@ -97,7 +97,7 @@ export function ReportStory() {
               </li>
             ))}
           </ul>
-          <p className="mt-5 text-xs text-steel">Ejemplo ilustrativo. Los resultados dependen de cada caso y de la ley vigente.</p>
+          <p className="mt-5 text-xs text-steel">Ejemplo ilustrativo del proceso de eliminación de reportes negativos.</p>
         </div>
       </div>
     </section>
