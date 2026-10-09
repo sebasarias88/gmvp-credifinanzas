@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/geist";
-import "@fontsource-variable/geist-mono";
-import "@fontsource-variable/unbounded";
 import "./globals.css";
+import { fontVariables } from "./fonts";
 import { site } from "@/content/site";
 import { SmoothScroll } from "@/components/core/SmoothScroll";
 import { Cursor } from "@/components/core/Cursor";
@@ -58,7 +56,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-CO" data-intro="done">
+    <html lang="es-CO" className={fontVariables} data-intro="done">
       <body className="grain min-h-screen">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-lime focus:px-4 focus:py-2 focus:text-void">
           Saltar al contenido

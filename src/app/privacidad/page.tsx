@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   return (
     <>
       <div className="h-28" />
-      <article className="mx-auto max-w-3xl px-6 py-20 text-fog">
+      <article className="break-words mx-auto max-w-3xl px-6 py-20 text-fog">
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-lime">Legal</p>
         <h1 className="text-4xl font-semibold tracking-[-0.05em] text-snow md:text-6xl">Política de privacidad y cookies</h1>
         <div className="mt-12 space-y-8 leading-relaxed [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-snow">

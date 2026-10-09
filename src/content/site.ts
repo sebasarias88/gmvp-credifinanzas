@@ -36,6 +36,18 @@ export const hero = {
     "Cada persona puede llegar hasta donde desee y se lo proponga. Eso mismo hacemos nosotros: llegamos hasta donde nuestros clientes desean, y los llevamos más allá.",
 };
 
+export const welcome = {
+  title: ["Atendemos a", "nivel nacional."],
+  text: "Aquí encuentras todos nuestros servicios. Todos están garantizados de acuerdo con el reporte de cada persona: trabajamos para solucionar lo que te afecta en servicios financieros, en la banca tradicional o en nuestros diferentes tipos de crédito.",
+  didYouKnow:
+    "Puedes salir de las centrales de riesgo CIFIN-TransUnion y DataCrédito-Experian. Es cuestión de gestión, tiempo y dinero, y te permite volver a tener un buen historial de crédito, atractivo para el sector financiero, cooperativo, real y de telecomunicaciones.",
+  sectors: ["Financiero", "Cooperativo", "Real", "Telecomunicaciones"],
+  cta: {
+    title: "¿Estás reportado y quieres volver a tener vida crediticia?",
+    text: "Podemos ayudarte. Si estás en apuros, escríbenos: nuestro servicio al cliente te atiende 24/7.",
+  },
+};
+
 export const story = {
   year: 2015,
   title: "Nacimos para que vuelvas a tener vida crediticia.",
@@ -55,7 +67,7 @@ export const about = {
   values: [
     {
       title: "Actitud de equipo",
-      text: "Un equipo idóneo y altamente calificado, con experiencia en el sector financiero: asesores financieros y abogados con amplio conocimiento en Habeas Data y en el sector financiero en general.",
+      text: "Un equipo idóneo y altamente calificado, con experiencia en el sector financiero: asesores financieros y abogados con amplio conocimiento en la Ley de Habeas Data (Ley 1266 de 2008), la ley de borrón y cuenta nueva y el sector financiero en general.",
     },
     {
       title: "Pasión por el cliente",

@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
       { source: "/politica-privacidad", destination: "/privacidad", permanent: true },
       { source: "/politica-de-cookies", destination: "/privacidad", permanent: true },
       { source: "/aviso-legal", destination: "/privacidad", permanent: true },
+      { source: "/mantenimiento", destination: "/", permanent: true },
     ];
   },
   async headers() {
