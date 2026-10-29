@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRef, type CSSProperties } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
-import { ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import { hero, site } from "@/content/site";
 import { SplitHeading } from "@/components/core/SplitHeading";
 import { Magnetic } from "@/components/core/Magnetic";
@@ -42,19 +42,11 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-[1360px] items-center gap-16 px-6 pb-20 md:px-10 lg:grid-cols-[1.05fr_1fr] lg:pb-28">
         <motion.div style={{ y: textY, opacity: fade }}>
-          <motion.span className="intro-fade glass inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 text-sm text-fog" style={{ "--d": "0ms" } as CSSProperties}
-          >
-            <span className="inline-flex items-center gap-1 rounded-full bg-lime px-2.5 py-1 font-mono text-[11px] font-bold text-void">
-              <Sparkles className="h-3 w-3" /> NUEVO
-            </span>
-            Diagnóstico gratis en 30 segundos
-          </motion.span>
-
           <SplitHeading
             as="h1"
             immediate
             lines={[...hero.title, { text: hero.accent, className: "text-electric-gradient" }]}
-            className="mt-8 text-[13vw] font-semibold leading-[0.95] tracking-[-0.055em] text-snow sm:text-7xl lg:text-[4rem] xl:text-[4.5rem]"
+            className="text-[13vw] font-semibold leading-[0.95] tracking-[-0.055em] text-snow sm:text-7xl lg:text-[4rem] xl:text-[4.5rem]"
           />
           <motion.p className="intro-fade mt-8 max-w-xl text-lg leading-relaxed text-fog" style={{ "--d": "500ms" } as CSSProperties}
           >
